@@ -25,14 +25,14 @@ def finding_sword() -> None:
     sword_strength = randint(10, 25)
     print(f'Вы обнаружили новый меч с силой атаки {sword_strength}')
     answer = 0
-    while answer != 1 and answer != 2:
-        answer = int(input('Хотите взять новый меч или пройти мимо?\n'
-                           '1 - взять\n2 - пройти мимо\n'))
-        if answer == 1:
+    while answer != '1' and answer != '2':
+        answer = input('Хотите взять новый меч или пройти мимо?\n'
+                       '1 - взять\n2 - пройти мимо\n')
+        if answer == '1':
             hero_strength = sword_strength
             print(f'Вы взяли новый меч,'
                   f'теперь сила вашей атаки {hero_strength}')
-        elif answer == 2:
+        elif answer == '2':
             print('Вы прошли мимо, сила вашей атаки осталась прежней')
         else:
             print('Вы ввели некорректный ответ, попробуйте ещё раз')
@@ -48,16 +48,16 @@ def meeting_monster() -> None:
     monster_strength = randint(10, 30)
     monster_health = randint(10, 30)
     answer = 0
-    while answer != 1 and answer != 2:
-        answer = int(input(f"Вы встретили монстра с атакой {monster_strength}"
-                           f" и количеством жизней {monster_health}\n"
-                           f"Хотите вступить с ним в бой?\n"
-                           f"1 - сражаться\n"
-                           f"2 - убежать, чтобы набраться сил\n"))
-        if answer == 1:
+    while answer != '1' and answer != '2':
+        answer = input(f"Вы встретили монстра с атакой {monster_strength}"
+                       f" и количеством жизней {monster_health}\n"
+                       f"Хотите вступить с ним в бой?\n"
+                       f"1 - сражаться\n"
+                       f"2 - убежать, чтобы набраться сил\n")
+        if answer == '1':
             print('Вы вступаете в сражение с монстром')
             battle(monster_strength, monster_health)
-        elif answer == 2:
+        elif answer == '2':
             print('Вы убежали, чтобы набраться сил перед следующей встречей')
         else:
             print('Вы ввели некорректный ответ, попробуйте ещё раз')
@@ -95,5 +95,6 @@ def battle(monster_strength: int, monster_health: int) -> None:
 
 actions = {1: finding_apple, 2: finding_sword, 3: meeting_monster}
 
-while hero_health > 0 and dead_monsters != 10:
-    actions[randint(1, 3)]()
+if __name__ == '__main__':
+    while hero_health > 0 and dead_monsters != 10:
+        actions[randint(1, 3)]()
